@@ -7,7 +7,7 @@ This repository is organised as a static research portal plus a compact set of r
 | index.html | Research overview: question, data, preprocessing, methods, evaluation, results, limitations and reproduction |
 | studio/index.html | Data Studio: full-holdout family metrics, model validation summary, feature ablation and sampled row inspection |
 | predictor/index.html | Forecast Explorer: inspection of saved LightGBM holdout prediction records; not live inference |
-| qna/index.html | Individual understanding and defense preparation mapped to the ES 335 five-point criterion |
+| qna/index.html | Final project work report: team contributions, methodology, assumptions, evaluation, error analysis and limitations |
 | portal.css | Shared layout and visual system for all portal pages |
 | portal.js | Navigation and data-driven interactions |
 | data/results.json | Model metrics, validation summaries, family metrics and ablation summaries used by the site |
