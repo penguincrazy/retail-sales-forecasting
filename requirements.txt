@@ -1,0 +1,7 @@
+# Dependencies used by the ES 335 course-project notebook
+numpy
+pandas
+matplotlib
+scikit-learn
+lightgbm
+jupyter
