@@ -31,8 +31,7 @@ function initPredictor(d,ins){
  }
  function refreshRecords(){
   const matches=visibleRows().filter(x=>x.date===date.value);
-  record.innerHTML=matches.length?matches.map(x=>'<option value="'+x.idx+'">Store '+x.store+' · '+x.date+'</option>').join(""):'<option value="">No records available</option>';
-  if(matches.length)record.value=String(matches[0].idx);
+  record.value=matches.length?String(matches[0].idx):"";
   showRecord();
  }
  function showRecord(){
@@ -110,8 +109,6 @@ function initPredictor(d,ins){
  function selectObservation(idx){
   const x=rows.find(r=>r.idx===idx);if(!x)return;
   date.value=x.date;
-  const matches=visibleRows().filter(r=>r.date===x.date);
-  record.innerHTML=matches.map(r=>'<option value="'+r.idx+'">Store '+r.store+' · '+r.date+'</option>').join("");
   record.value=String(idx);
   showRecord();
  }
@@ -165,7 +162,7 @@ function initPredictor(d,ins){
   a.href=url;a.download="forecast_explorer_filtered_sample.csv";document.body.appendChild(a);a.click();a.remove();URL.revokeObjectURL(url);
  }
  fam.addEventListener("change",refreshStores);store.addEventListener("change",refreshDates);
- date.addEventListener("change",refreshRecords);record.addEventListener("change",showRecord);
+ date.addEventListener("change",refreshRecords);
  chartMode.addEventListener("change",renderDiagnostics);scale.addEventListener("change",renderDiagnostics);sort.addEventListener("change",renderDiagnostics);
  $("downloadPreviewCsv").addEventListener("click",downloadSample);
  fam.value=families.includes("BEVERAGES")?"BEVERAGES":families[0];
