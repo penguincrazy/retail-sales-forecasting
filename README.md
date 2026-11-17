@@ -17,7 +17,7 @@ The static portal has four pages:
 | Overview | Research question, data, preprocessing, baseline, candidate models, evaluation, results, error analysis, limitations and reproduction |
 | Data Studio | Panel coverage, full-holdout family errors, searchable ranking of all 1,782 store-family errors, model validation, feature ablation, and a forecast-horizon analysis panel (scores pending notebook rerun) |
 | Forecast Explorer | Filters saved LightGBM holdout preview observations by family, store and date; includes error views but does not run new model inference |
-| Individual Defense | Individual defense preparation mapped to contribution, key choices, evaluation, a limitation and a small change |
+| Project Work | Final report of team contributions, forecasting workflow, methodology, assumptions, results, error analysis and limitations |
 
 ## Main findings
 
