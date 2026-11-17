@@ -1,6 +1,6 @@
 # Retail Sales Forecasting and Feature Analysis — ES 335
 
-**Project team:** Krishn Kumar (25110172) and Arush Banerjee (25110056)  
+**Project team:** Krishn Kumar and Arush Banerjee  
 **Dataset:** Kaggle Store Sales – Time Series Forecasting (Corporación Favorita)  
 **Forecast unit:** Daily store × product family × date  
 **Forecast horizon:** 16 days
@@ -48,7 +48,7 @@ Removing sales-history features increases mean rolling RMSLE from 0.41428 to 0.5
 ## Reproduce the experiment
 
 1. Download the competition files from Kaggle Store Sales – Time Series Forecasting.
-2. Open the report-style ES 335 project notebook from the team's Kaggle workspace. The notebook is not yet stored in this repository; add its Kaggle share URL or commit the final `.ipynb` before submission.
+2. Open the [tested ES 335 project notebook on Kaggle](https://www.kaggle.com/code/krishn9656/notebook3b38d5a9f8). The `.ipynb` source file is not yet stored in this repository; export it from Kaggle using **File → Download Notebook** and add it under `notebooks/` for versioned archival.
 3. Attach the dataset and run the notebook from the first cell.
 4. The notebook exports rolling validation, final holdout, family error, feature-ablation and prediction-sample files to project_outputs/.
 5. Compare the exported metrics with the compact CSV artifacts in outputs/.
