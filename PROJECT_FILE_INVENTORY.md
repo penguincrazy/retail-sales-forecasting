@@ -12,7 +12,7 @@ This repository is organised as a static research portal plus a compact set of r
 | portal.js | Navigation and data-driven interactions |
 | data/results.json | Model metrics, validation summaries, family metrics and ablation summaries used by the site |
 | data/prediction_inspector.json | Four-point-per-family preview drawn from the notebook's 5,000-row holdout sample |
-| outputs/ | Exported experiment metadata and compact CSV result tables |
+| outputs/ | Exported experiment metadata, model and ablation CSVs, family errors, and five store-family error examples |
 | docs/methodology.md | Forecast information boundary, feature groups, models and validation protocol |
 | docs/limitations.md | Known limitations and interpretation boundaries |
 | requirements.txt | Python dependencies used by the notebook |
