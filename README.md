@@ -15,7 +15,7 @@ The static portal has four pages:
 | Page | Purpose |
 |---|---|
 | Overview | Research question, data, preprocessing, baseline, candidate models, evaluation, results, error analysis, limitations and reproduction |
-| Data Studio | Panel coverage, full-holdout family errors, searchable ranking of all 1,782 store-family errors, model validation, feature ablation, and a forecast-horizon analysis panel (scores pending notebook rerun) |
+| Data Studio | Panel coverage, full-holdout family errors, searchable ranking of all 1,782 store-family errors, model validation, feature ablation, and a forecast-horizon analysis panel with 16-day RMSLE and MAE profiles for LightGBM and Seasonal naive (Base model) |
 | Forecast Explorer | Filters saved LightGBM holdout preview observations by family, store and date; includes error views but does not run new model inference |
 | Project Work | Final report of team contributions, forecasting workflow, methodology, assumptions, results, error analysis and limitations |
 
@@ -39,7 +39,7 @@ Removing sales-history features increases mean rolling RMSLE from 0.41428 to 0.5
 - portal.css, portal.js — shared layout and interactive behaviours
 - data/results.json — model metrics, rolling validation, family errors and feature ablation
 - data/prediction_inspector.json — four-point-per-family preview from the exported 5,000-row holdout sample
-- outputs/ — compact CSV results, experiment metadata, and the complete 1,782-row `worst_store_family_errors.csv` ranking
+- outputs/ — compact CSV results, verified forecast-horizon summaries and fold-level results, runtime environment versions, experiment metadata, and the complete 1,782-row `worst_store_family_errors.csv` ranking
 - notebooks/ES335_Retail_Sales_Forecasting_Project.ipynb — canonical corrected course-project notebook source
 - docs/methodology.md — experimental protocol and feature engineering
 - docs/limitations.md — assumptions and limitations
@@ -52,7 +52,7 @@ Removing sales-history features increases mean rolling RMSLE from 0.41428 to 0.5
 2. Open the canonical [project notebook in this repository](notebooks/ES335_Retail_Sales_Forecasting_Project.ipynb), or use the tested [Kaggle copy](https://www.kaggle.com/code/krishn9656/notebook3b38d5a9f8).
 3. Attach the dataset and run the notebook from the first cell.
 4. The notebook exports rolling validation, final holdout, family error, feature-ablation, prediction-sample, forecast-horizon and environment-version files to project_outputs/.
-5. Compare the exported metrics with the compact CSV artifacts in outputs/.
+5. The verified forecast-horizon summary and fold-level CSVs, runtime environment snapshot and experiment metadata are committed in outputs/.
 
 Install the Python dependencies with:
 
