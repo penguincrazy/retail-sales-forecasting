@@ -15,3 +15,56 @@
 @media(max-width:560px){.container,.header-inner,.footer-inner{padding-left:18px;padding-right:18px}.page-hero{padding:42px 0 24px}.page-title{font-size:39px}.lede{font-size:15px}.card-grid,.three-col{grid-template-columns:1fr}.kpi-grid{gap:8px}.kpi{padding:13px}.kpi strong{font-size:23px}.bar-row{grid-template-columns:104px 1fr 52px;gap:7px}.detail-grid{grid-template-columns:1fr 1fr}.footer-inner{align-items:flex-start;flex-direction:column}.data-strip strong{font-size:22px}}
 
 .download-btn{border:1px solid #cbd6e4;background:white;color:#315d8f;border-radius:7px;padding:10px 13px;font:10px var(--mono);cursor:pointer;white-space:nowrap}.download-btn:hover{background:var(--blue-soft);border-color:#9bb9dd}
+
+
+/* Forecast Explorer diagnostics */
+.forecast-diagnostics{padding:24px}
+.forecast-controls{align-items:end;gap:12px}
+.forecast-controls .control{flex:1 1 170px;min-width:155px}
+.forecast-controls .download-btn{margin-left:auto}
+.forecast-stat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:18px 0 26px}
+.forecast-stat{padding:16px 17px;border:1px solid #e0e7ef;border-radius:9px;background:linear-gradient(145deg,#f8fbff,#fff)}
+.forecast-stat span{display:block;font:9px var(--mono);letter-spacing:.1em;color:#7b8ca1}
+.forecast-stat strong{display:block;font:800 25px var(--display);letter-spacing:-.04em;color:var(--navy);margin:7px 0 2px;font-variant-numeric:tabular-nums}
+.forecast-stat small{font-size:10px;color:var(--muted)}
+.forecast-chart-heading,.forecast-table-head{display:flex;justify-content:space-between;align-items:end;gap:16px;flex-wrap:wrap;margin:24px 0 12px}
+.forecast-chart-heading h3,.forecast-table-head h3{font:750 19px var(--display);letter-spacing:-.03em;margin:4px 0 0;color:var(--navy)}
+.forecast-legend{display:flex;gap:14px;flex-wrap:wrap;color:#6d7c90;font-size:10px}
+.forecast-legend span{display:inline-flex;align-items:center;gap:6px}
+.legend-dot{width:9px;height:9px;display:inline-block;border-radius:50%;background:#4779b8}
+.legend-dot.over{background:#e59a54}
+.legend-dot.exact{background:#6b9c80}
+.legend-line{width:18px;height:0;border-top:2px dashed #d99b5d;display:inline-block}
+.forecast-svg-wrap{background:#fff;border:1px solid #e1e8f0;border-radius:10px;padding:9px 10px;overflow:hidden}
+#predViz{display:block;width:100%;height:auto;min-height:300px}
+#predViz .axis-label{font:10px var(--mono);fill:#718197}
+#predViz .axis-title{font:10px var(--mono);letter-spacing:.08em;fill:#61748a}
+#predViz .row-label{font:11px var(--mono);fill:#5e6e82}
+#predViz .bar-value{font:10px var(--mono);fill:#718197}
+#predViz .forecast-point{cursor:pointer;outline:none}
+#predViz .point-core{fill:#4779b8;stroke:#fff;stroke-width:2}
+#predViz .forecast-point.over .point-core{fill:#e59a54}
+#predViz .forecast-point.exact .point-core{fill:#6b9c80}
+#predViz .point-halo{fill:#4779b8;opacity:0}
+#predViz .forecast-point.selected .point-halo{opacity:.17}
+#predViz .forecast-point:focus .point-halo{opacity:.24;stroke:#17243b;stroke-width:1}
+#predViz .error-bar{fill:#4779b8;opacity:.88}
+#predViz .forecast-point.over .error-bar{fill:#e59a54}
+#predViz .forecast-point.exact .error-bar{fill:#6b9c80}
+#predViz .actual-bar{fill:#4779b8;opacity:.88}
+#predViz .pred-bar{fill:#e59a54;opacity:.9}
+#predViz .forecast-point.selected rect{stroke:#17243b;stroke-width:2}
+.forecast-insight{margin:13px 2px 19px;padding:13px 15px;background:#f2f6fb;border-left:3px solid var(--blue);border-radius:0 7px 7px 0;color:#52677f;font-size:12px}
+.forecast-observation-table table{min-width:760px}
+.forecast-observation{cursor:pointer}
+.forecast-observation:hover td{background:#f5f8fc}
+.forecast-observation.active td{background:#edf4fc}
+.forecast-observation:focus{outline:2px solid #8bb0da;outline-offset:-2px}
+.forecast-observation td.positive{color:#2f679c;font-weight:700}
+.forecast-observation td.negative{color:#b36c31;font-weight:700}
+.direction-tag{display:inline-flex;padding:4px 7px;border-radius:5px;font:9px var(--mono);background:#edf4fc;color:#376b9f}
+.direction-tag.over{background:#fbf0e4;color:#a56c36}
+.direction-tag.exact{background:#edf5ec;color:#4d7856}
+.forecast-note{font-size:10px;line-height:1.6;color:#78879a;margin:15px 2px 0}
+@media(max-width:850px){.forecast-stat-grid{grid-template-columns:repeat(2,1fr)}.forecast-controls .download-btn{margin-left:0}}
+@media(max-width:560px){.forecast-diagnostics{padding:15px}.forecast-stat-grid{gap:7px}.forecast-stat{padding:12px}.forecast-stat strong{font-size:20px}.forecast-svg-wrap{padding:3px}}
