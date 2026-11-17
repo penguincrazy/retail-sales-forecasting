@@ -16,9 +16,11 @@ Features include calendar / cyclical encodings, promotion counts, national / reg
 
 ## Models and baseline
 
-The Seasonal naive (Base model) selects the latest available matching weekday from the past at or before the forecast origin, falling back to the store-family historical median when the lookup is absent.
+The Seasonal naive (Base model) selects the latest matching weekday strictly before the forecast origin. For lead day h, the source date is target_date − 7 × ceil(h / 7) days. If that store–family–date is absent, it uses the median sales for that store–family from history available at the forecast origin; zero is only the final fallback if the median is also unavailable.
 
 Compared models: OLS, Ridge, Lasso, Decision Tree, Random Forest, KNN and LightGBM, plus Seasonal naive (Base model).
+
+The LightGBM configuration uses a regression objective on log1p(sales), 600 estimators, learning_rate=0.04, num_leaves=31, min_child_samples=30, colsample_bytree=0.8 and reg_lambda=1.0. A GPU capability probe chooses GPU with max_bin=63 or CPU with max_bin=255. The fixed settings are a practical comparison configuration rather than an exhaustively tuned optimum. Although subsample=0.8 appears in the constructor, subsample_freq=0 disables row bagging in this run; colsample_bytree remains active.
 
 ## Validation and selection
 
@@ -36,7 +38,7 @@ Model fitting is capped at 80,000 sampled training rows where required, using a 
 
 ## Metrics
 
-RMSLE is computed from log1p(actual) and log1p(predicted). MAE is calculated on the sales scale. They are complementary: RMSLE emphasises relative/log-scale deviations, while MAE is in sales units.
+RMSLE is computed from log1p(actual) and log1p(predicted). MAE is calculated on the sales scale. They are complementary: RMSLE emphasises relative/log-scale deviations, while MAE is in sales units. In rolling validation, LightGBM has mean RMSLE 0.41407 (SD 0.00659) and mean MAE 81.00; the Seasonal naive (Base model) has mean RMSLE 0.52076 and mean MAE 74.46. Therefore, LightGBM wins on the selection metric RMSLE, but not on rolling MAE. On the separate final holdout, LightGBM has RMSLE 0.45270 and MAE 85.77; the base model has RMSLE 0.61704 and MAE 96.54.
 
 
 ## Model-selection interpretation
