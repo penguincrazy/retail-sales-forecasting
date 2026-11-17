@@ -1,0 +1,19 @@
+fold,feature_set,RMSLE
+1,Full,0.41906243845679275
+1,Without sales_history,0.6001611277588396
+1,Without calendar,0.4673422559228892
+1,Without promotion,0.440858098804686
+1,Without holidays,0.4200219865774087
+1,Without store_context,0.4335344327923748
+2,Full,0.406595793107013
+2,Without sales_history,0.5697935079327622
+2,Without calendar,0.4553997547190725
+2,Without promotion,0.41658734185627844
+2,Without holidays,0.4081194273612098
+2,Without store_context,0.41656844756472466
+3,Full,0.4171700562349081
+3,Without sales_history,0.5804972994672017
+3,Without calendar,0.4543878741483464
+3,Without promotion,0.42912340381465475
+3,Without holidays,0.4177317211021867
+3,Without store_context,0.4307763874740873
