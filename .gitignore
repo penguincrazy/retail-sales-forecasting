@@ -1,0 +1,23 @@
+# Local Python environments and caches
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+
+# Kaggle competition data should be downloaded separately
+store-sales-time-series-forecasting.zip
+data/raw/
+data/train.csv
+data/test.csv
+data/stores.csv
+data/holidays_events.csv
+data/oil.csv
+data/transactions.csv
+
+# Local experiment outputs
+kaggle_working/
+project_outputs/
+*.log
+.DS_Store
+Thumbs.db
