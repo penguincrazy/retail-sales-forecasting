@@ -12,6 +12,8 @@ function initPredictor(d,ins){
  const rows=ins.rows.map((r,idx)=>({date:r[0],store:Number(r[1]),family:r[2],actual:Number(r[3]),pred:Number(r[4]),idx:idx}));
  const families=[...new Set(rows.map(x=>x.family))].sort();
  const esc=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+ if(!families.length)throw new Error("No product-family records were found in the forecast preview.");
+ fam.innerHTML=families.map(x=>'<option value="'+esc(x)+'">'+esc(x)+'</option>').join("");
  const signed=x=>(x>0?"+":"")+money(x);
  const scaled=x=>scale.value==="log"?Math.log1p(Math.max(0,x)):x;
  const signedScaled=x=>scale.value==="log"?Math.sign(x)*Math.log1p(Math.abs(x)):x;
@@ -24,12 +26,12 @@ function initPredictor(d,ins){
  }
  function refreshDates(){
   const dates=[...new Set(visibleRows().map(x=>x.date))].sort();
-  date.innerHTML=dates.map(x=>'<option value="'+x+'">'+x+'</option>').join("");
+  date.innerHTML=dates.length?dates.map(x=>'<option value="'+x+'">'+x+'</option>').join(""):'<option value="">No dates available</option>';
   refreshRecords();
  }
  function refreshRecords(){
   const matches=visibleRows().filter(x=>x.date===date.value);
-  record.innerHTML=matches.map(x=>'<option value="'+x.idx+'">Store '+x.store+' · '+x.date+'</option>').join("");
+  record.innerHTML=matches.length?matches.map(x=>'<option value="'+x.idx+'">Store '+x.store+' · '+x.date+'</option>').join(""):'<option value="">No records available</option>';
   if(matches.length)record.value=String(matches[0].idx);
   showRecord();
  }
@@ -166,7 +168,11 @@ function initPredictor(d,ins){
  date.addEventListener("change",refreshRecords);record.addEventListener("change",showRecord);
  chartMode.addEventListener("change",renderDiagnostics);scale.addEventListener("change",renderDiagnostics);sort.addEventListener("change",renderDiagnostics);
  $("downloadPreviewCsv").addEventListener("click",downloadSample);
- fam.value=families.includes("BEVERAGES")?"BEVERAGES":families[0];refreshStores();
+ fam.value=families.includes("BEVERAGES")?"BEVERAGES":families[0];
+ if(!$("predChartMode").value)$("predChartMode").value="scatter";
+ if(!$("predScale").value)$("predScale").value="linear";
+ if(!$("predSort").value)$("predSort").value="date";
+ refreshStores();
 }
 function initQna(){const search=$("qnaSearch");if(!search)return;search.addEventListener("input",()=>{const q=search.value.toLowerCase();document.querySelectorAll(".qa").forEach(el=>{el.classList.toggle("hidden",!el.textContent.toLowerCase().includes(q))})})}
 (async()=>{header();const page=document.body.dataset.page;try{if(page==="predictor"){const embedded=$("predictorData");if(!embedded)throw new Error("The embedded forecast sample is missing.");const i=JSON.parse(embedded.textContent);if(!Array.isArray(i.rows)||!i.rows.length)throw new Error("The embedded forecast sample contains no records.");initPredictor({},i);return;}const d=await readJSON("results.json");if(page==="home")initOverview(d);if(page==="studio"){const i=await readJSON("prediction_inspector.json");initStudio(d,i)}if(page==="qna")initQna()}catch(e){console.error("Retail Demand Lab initialization:",e);const status=$("predLoadError");if(status)status.textContent="The forecast filters could not be initialized: "+e.message;document.querySelectorAll("[data-error]").forEach(el=>el.textContent="The project data could not be loaded. Please refresh the page.")}})();
