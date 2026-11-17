@@ -43,7 +43,6 @@
 <section class="section-band"><div class="container section"><div class="section-head"><div><div class="eyebrow">EVALUATION RESULTS</div><h2>LightGBM leads on the selected metric.</h2></div><p>Mean rolling-validation RMSLE is the model-selection criterion. MAE is also reported in sales units and can rank the models differently.</p></div>
 <div class="table-wrap"><table><thead><tr><th>Model</th><th>Rolling mean RMSLE</th><th>Rolling mean MAE</th><th>Final holdout RMSLE</th><th>Final holdout MAE</th></tr></thead><tbody>
 <tr><td><strong>LightGBM</strong></td><td class="num">0.41407 ± 0.00659</td><td class="num">81.00</td><td class="num">0.45270</td><td class="num">85.77</td></tr>
-<tr><td>Random Forest</td><td class="num">0.42933</td><td class="num">—</td><td class="num">0.51365</td><td class="num">94.08</td></tr>
 <tr><td>Seasonal naive (Base model)</td><td class="num">0.52076</td><td class="num">74.46</td><td class="num">0.61704</td><td class="num">96.54</td></tr>
 </tbody></table></div><div class="callout"><strong>Interpretation:</strong> LightGBM is selected because it has the lowest mean rolling RMSLE and also achieves lower final-holdout RMSLE and MAE than the baseline. The baseline nevertheless has lower mean rolling MAE (74.46 versus 81.00), so LightGBM does not outperform it on every rolling metric.</div></div></section>
 
