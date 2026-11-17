@@ -1,39 +1,82 @@
-# Retail Sales Forecasting — ES 335 Project Website
+# Retail Sales Forecasting and Feature Analysis — ES 335
 
-A static interactive website for the ES 335 daily retail-sales forecasting and feature-analysis project. It is built with HTML, CSS, and vanilla JavaScript and is intended for GitHub Pages.
+**Project team:** Krishn Kumar (25110172) and Arush Banerjee (25110056)  
+**Dataset:** Kaggle Store Sales – Time Series Forecasting (Corporación Favorita)  
+**Forecast unit:** Daily store × product family × date  
+**Forecast horizon:** 16 days
 
-**Project team:** Krishn Kumar and Arush Banerjee.
+## Live research portal
 
-## Website files
-- `index.html` — project narrative and page structure
-- `style.css` — responsive visual design
-- `script.js` — interactive charts, family explorer, and navigation
-- `data/results.json` — exported model metrics, 33 family-level result records, feature-ablation results, and a compact 50-point preview sampled from the exported 5,000-row prediction sample
-- `.nojekyll` — prevents Jekyll processing
+- **Website:** https://penguincrazy.github.io/retail-sales-forecasting/
+- **Source repository:** https://github.com/penguincrazy/retail-sales-forecasting
 
-## Run locally
-The page loads `data/results.json` with `fetch`, so serve the directory with a local web server rather than opening `index.html` directly:
+The static portal has four pages:
 
-```bash
-python -m http.server 8000
-```
+| Page | Purpose |
+|---|---|
+| Overview | Research question, data, preprocessing, baseline, candidate models, evaluation, results, error analysis, limitations and reproduction |
+| Data Studio | Full-holdout family-level error comparison, model validation summary, ablation results, and a clearly labelled sample-row inspector |
+| Forecast Explorer | Inspects saved LightGBM holdout predictions; it does not run a new model inference |
+| Oral Defense | Searchable project-specific questions and answers |
 
-Then visit `http://localhost:8000`.
+## Main findings
 
-## Enable GitHub Pages
-Open **Settings → Pages**. Under **Build and deployment**, choose **Deploy from a branch**, then select `main` and `/(root)` and save. The expected site URL is:
+LightGBM is the best model by mean rolling-validation RMSLE and final-holdout RMSLE.
 
-https://penguincrazy.github.io/retail-sales-forecasting/
+| Evaluation | LightGBM | Random Forest | Seasonal naive |
+|---|---:|---:|---:|
+| Mean rolling RMSLE | 0.41407 | 0.42933 | 0.52076 |
+| Final holdout RMSLE | 0.45270 | 0.51365 | 0.61704 |
+| Final holdout MAE | 85.77 | 94.08 | 96.54 |
 
-GitHub may take a little time to publish after the source is saved.
+The final holdout is 31 July–15 August 2017. The three rolling validation windows are 13–28 June, 29 June–14 July, and 15–30 July 2017.
 
-## Methodology summary
-The project forecasts daily sales for each store–product-family pair over a 16-day horizon. It compares a seasonal-naive baseline with OLS, Ridge, Lasso, Decision Tree, Random Forest, KNN, and LightGBM. Evaluation uses three rolling-origin folds and a separate final holdout. Model fitting was capped at 80,000 training rows for the relevant estimators; the results therefore describe that capped-training setup. Future actual sales are not used as predictors, and the forecast assumes promotion values are known over the 16-day horizon.
+Removing sales-history features increases mean rolling RMSLE from 0.41428 to 0.58348, the largest degradation among the tested feature-group ablations.
 
-## Result-data caveats
-- The compact scatter plot is a 50-point preview from a fixed-stride selection of the exported 5,000-row prediction sample; it is not a full holdout visualization.
-- The exported archive did not contain `worst_store_family_errors.csv`, so the site does not claim to display a full store-family error ranking.
-- The reported metrics are the exported results from the executed notebook. The team should cross-check all values against the notebook before submission.
+## Repository structure
 
-## AI assistance disclosure
-AI assistance was used for website planning, implementation support, and editing. The project team is responsible for independently verifying the displayed results and being able to explain the methodology, code, and conclusions.
+- index.html, studio/, predictor/, qna/ — four static research-portal pages
+- portal.css, portal.js — shared layout and interactive behaviours
+- data/results.json — model metrics, rolling validation, family errors and feature ablation
+- data/prediction_inspector.json — four-point-per-family preview from the exported 5,000-row holdout sample
+- outputs/ — compact CSV results and experiment metadata
+- docs/methodology.md — experimental protocol and feature engineering
+- docs/limitations.md — assumptions and limitations
+- PROJECT_FILE_INVENTORY.md — repository inventory
+- requirements.txt — Python notebook dependencies
+
+## Reproduce the experiment
+
+1. Download the competition files from Kaggle Store Sales – Time Series Forecasting.
+2. Open the report-style ES 335 project notebook in Kaggle or a compatible Jupyter environment.
+3. Attach the dataset and run the notebook from the first cell.
+4. The notebook exports rolling validation, final holdout, family error, feature-ablation and prediction-sample files to project_outputs/.
+5. Compare the exported metrics with the compact CSV artifacts in outputs/.
+
+Install the Python dependencies with:
+
+    pip install -r requirements.txt
+
+To run the website locally, serve the repository root rather than opening the HTML file directly:
+
+    python -m http.server 8000
+
+Then open http://localhost:8000.
+
+## Forecast information boundary
+
+Sales-history features are shifted by 16 days. Calendar features are known in advance. Promotion values are assumed to be known for the entire forecast window. Future actual sales, future oil prices and future transaction values are not used. Numerical and categorical preprocessing is fitted on the training side of each validation split.
+
+Model fitting is capped at 80,000 sampled training rows where required, using seed 42. Validation and holdout rows are evaluated in full. Scores describe this capped-training setup.
+
+## Interpretation boundaries
+
+- Family-level error metrics use all 864 holdout rows per family; the row-level portal preview is only a small sample.
+- The prediction inspector is not a live predictor. No serialized LightGBM model or inference service is included in this static website repository.
+- Feature ablation assesses predictive usefulness, not causal effects.
+- Formal significance tests were not part of this experiment.
+- Raw competition data is not committed; download it from Kaggle under the competition's data terms.
+
+## AI-use disclosure
+
+AI assistance was used for parts of website planning, implementation and editing. The project team is responsible for independently verifying all displayed results against the executed notebook and explaining the modeling decisions and conclusions.
