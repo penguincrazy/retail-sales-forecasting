@@ -107,7 +107,11 @@ function initPredictor(d,ins){
  }
  function selectObservation(idx){
   const x=rows.find(r=>r.idx===idx);if(!x)return;
-  date.value=x.date;record.value=String(idx);showRecord();
+  date.value=x.date;
+  const matches=visibleRows().filter(r=>r.date===x.date);
+  record.innerHTML=matches.map(r=>'<option value="'+r.idx+'">Store '+r.store+' · '+r.date+'</option>').join("");
+  record.value=String(idx);
+  showRecord();
  }
  function drawChart(pts){
   if(chartMode.value==="errors"){
