@@ -11,3 +11,4 @@
 
 - Forecast-horizon metrics describe three rolling validation folds and are not calibrated uncertainty intervals or guarantees for future dates.
 - Candidate hyperparameters were fixed for the model comparison rather than selected through an exhaustive search; conclusions apply to the tested configurations.
+- The LightGBM constructor specifies `subsample=0.8`, but `subsample_freq=0` leaves row bagging disabled. Feature subsampling (`colsample_bytree=0.8`) is active; the row-subsampling value should not be interpreted as an applied training operation.
