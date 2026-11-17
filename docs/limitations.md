@@ -8,3 +8,6 @@
 - The row-level prediction explorer uses a small preview selected from a 5,000-row holdout prediction sample. It is not the full 28,512-row holdout.
 - The static website inspects saved LightGBM predictions. It does not contain a serialized LightGBM model or provide new live inference.
 - The notebook's statistical summaries do not include formal significance tests. Fold standard deviations are descriptive.
+
+- Forecast-horizon metrics describe three rolling validation folds and are not calibrated uncertainty intervals or guarantees for future dates.
+- Candidate hyperparameters were fixed for the model comparison rather than selected through an exhaustive search; conclusions apply to the tested configurations.

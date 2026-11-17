@@ -16,9 +16,9 @@ Features include calendar / cyclical encodings, promotion counts, national / reg
 
 ## Models and baseline
 
-The seasonal-naive baseline selects the latest available matching weekday from the past at or before the forecast origin, falling back to the store-family historical median when the lookup is absent.
+The Seasonal naive (Base model) selects the latest available matching weekday from the past at or before the forecast origin, falling back to the store-family historical median when the lookup is absent.
 
-Compared models: OLS, Ridge, Lasso, Decision Tree, Random Forest, KNN and LightGBM, plus seasonal naive.
+Compared models: OLS, Ridge, Lasso, Decision Tree, Random Forest, KNN and LightGBM, plus Seasonal naive (Base model).
 
 ## Validation and selection
 
@@ -37,3 +37,12 @@ Model fitting is capped at 80,000 sampled training rows where required, using a 
 ## Metrics
 
 RMSLE is computed from log1p(actual) and log1p(predicted). MAE is calculated on the sales scale. They are complementary: RMSLE emphasises relative/log-scale deviations, while MAE is in sales units.
+
+
+## Model-selection interpretation
+
+The Seasonal naive (Base model) is a meaningful weekly-pattern reference: for each forecast day it uses the latest matching weekday available at the forecast origin, with a store-family historical-median fallback when that lookup is absent. Candidate models are compared on the same folds. LightGBM is selected by mean rolling RMSLE, not by every metric: the base model has lower mean rolling MAE in the three development folds. Candidate hyperparameters were fixed for this comparison rather than selected through an exhaustive search, so conclusions apply to the tested configurations.
+
+## Forecast-horizon analysis
+
+The updated notebook reuses predictions from the three rolling-origin folds to calculate RMSLE and MAE separately for forecast days 1–16. The summary reports the mean and standard deviation of fold-level metrics for each lead time. This describes how errors vary with horizon under the tested folds; it is not a calibrated prediction interval.
