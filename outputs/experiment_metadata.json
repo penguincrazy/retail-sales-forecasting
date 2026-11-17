@@ -3,11 +3,26 @@
   "course": "ES 335",
   "horizon_days": 16,
   "rolling_folds": [
-    {"fold": 1, "start": "2017-06-13", "end": "2017-06-28"},
-    {"fold": 2, "start": "2017-06-29", "end": "2017-07-14"},
-    {"fold": 3, "start": "2017-07-15", "end": "2017-07-30"}
+    {
+      "fold": 1,
+      "start": "2017-06-13",
+      "end": "2017-06-28"
+    },
+    {
+      "fold": 2,
+      "start": "2017-06-29",
+      "end": "2017-07-14"
+    },
+    {
+      "fold": 3,
+      "start": "2017-07-15",
+      "end": "2017-07-30"
+    }
   ],
-  "final_holdout": {"start": "2017-07-31", "end": "2017-08-15"},
+  "final_holdout": {
+    "start": "2017-07-31",
+    "end": "2017-08-15"
+  },
   "max_train_rows": 80000,
   "random_seed": 42,
   "forecast_information_assumptions": {
@@ -22,5 +37,13 @@
     "competition_test_rows": 28512,
     "stores": 54,
     "product_families": 33
+  },
+  "store_family_error_audit": {
+    "rows": 1782,
+    "stores": 54,
+    "product_families": 33,
+    "holdout_days_per_group": 16,
+    "sort": "mean_absolute_error descending",
+    "csv": "outputs/worst_store_family_errors.csv"
   }
 }

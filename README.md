@@ -15,7 +15,7 @@ The static portal has four pages:
 | Page | Purpose |
 |---|---|
 | Overview | Research question, data, preprocessing, baseline, candidate models, evaluation, results, error analysis, limitations and reproduction |
-| Data Studio | Panel-coverage diagnostics, full-holdout family-level error comparison with CSV export, model validation summary, ablation results, top-five store-family error examples, and a clearly labelled sample-row inspector |
+| Data Studio | Panel-coverage diagnostics, full-holdout family-level error comparison, searchable ranking of all 1,782 store-family errors with CSV download, model validation summary, ablation results, and a clearly labelled sample-row inspector |
 | Forecast Explorer | Inspects saved LightGBM holdout predictions; it does not run a new model inference |
 | Oral Defense | Searchable project-specific questions and answers |
 
@@ -39,7 +39,8 @@ Removing sales-history features increases mean rolling RMSLE from 0.41428 to 0.5
 - portal.css, portal.js — shared layout and interactive behaviours
 - data/results.json — model metrics, rolling validation, family errors and feature ablation
 - data/prediction_inspector.json — four-point-per-family preview from the exported 5,000-row holdout sample
-- outputs/ — compact CSV results and experiment metadata
+- outputs/ — compact CSV results, experiment metadata, and the complete 1,782-row `worst_store_family_errors.csv` ranking
+- notebooks/ES335_Retail_Sales_Forecasting_Project.ipynb — canonical corrected course-project notebook source
 - docs/methodology.md — experimental protocol and feature engineering
 - docs/limitations.md — assumptions and limitations
 - PROJECT_FILE_INVENTORY.md — repository inventory

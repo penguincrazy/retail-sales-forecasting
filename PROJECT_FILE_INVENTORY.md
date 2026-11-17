@@ -12,10 +12,10 @@ This repository is organised as a static research portal plus a compact set of r
 | portal.js | Navigation and data-driven interactions |
 | data/results.json | Model metrics, validation summaries, family metrics and ablation summaries used by the site |
 | data/prediction_inspector.json | Four-point-per-family preview drawn from the notebook's 5,000-row holdout sample |
-| outputs/ | Exported experiment metadata, model and ablation CSVs, family errors, and five store-family error examples |
+| outputs/ | Exported experiment metadata, model and ablation CSVs, family errors, five example rows, and the complete 1,782-row store-family error ranking (`worst_store_family_errors.csv`) |
 | docs/methodology.md | Forecast information boundary, feature groups, models and validation protocol |
 | docs/limitations.md | Known limitations and interpretation boundaries |
-| notebooks/ES335_Retail_Sales_Forecasting_Project.ipynb | Canonical report-style notebook; the tested Kaggle version is linked in the README, but the exported `.ipynb` file is not yet committed |
+| notebooks/ES335_Retail_Sales_Forecasting_Project.ipynb | Canonical corrected course-project notebook source; the tested Kaggle copy is linked in the README |
 | requirements.txt | Python dependencies used by the notebook |
 | .gitignore | Excludes local Kaggle data, caches and generated working directories |
 
@@ -26,4 +26,4 @@ This repository is organised as a static research portal plus a compact set of r
 - The alternative per-family LightGBM script and four-model LightGBM ensemble notebook: these represent different experimental pipelines and are not the source of the reported course-project metrics.
 - The unrelated Indonesian individual-assignment notebook: it is not part of this team project.
 
-The canonical source for the reported course experiment is the [tested report-style ES 335 notebook in the team's Kaggle workspace](https://www.kaggle.com/code/krishn9656/notebook3b38d5a9f8). Its exported `.ipynb` file is not yet committed here. The complete `worst_store_family_errors.csv` has now been generated and separately supplied to the project workflow; it still needs to be added under `outputs/` before the repository inventory is finalised. The existing `outputs/worst_store_family_examples.csv` remains a top-five excerpt.
+The canonical source for the reported course experiment is the [tested report-style ES 335 notebook in the team's Kaggle workspace](https://www.kaggle.com/code/krishn9656/notebook3b38d5a9f8), archived at `notebooks/ES335_Retail_Sales_Forecasting_Project.ipynb`. The complete `outputs/worst_store_family_errors.csv` ranks all 1,782 store-family groups on the 16-day final holdout. The separate `outputs/worst_store_family_examples.csv` remains a top-five excerpt.
