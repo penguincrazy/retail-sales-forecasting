@@ -15,9 +15,9 @@ The static portal has four pages:
 | Page | Purpose |
 |---|---|
 | Overview | Research question, data, preprocessing, baseline, candidate models, evaluation, results, error analysis, limitations and reproduction |
-| Data Studio | Panel-coverage diagnostics, full-holdout family-level error comparison, searchable ranking of all 1,782 store-family errors with CSV download, model validation summary, ablation results, and a clearly labelled sample-row inspector |
-| Forecast Explorer | Inspects saved LightGBM holdout predictions; it does not run a new model inference |
-| Oral Defense | Individual defense preparation mapped to contribution, key choices, evaluation, a limitation and a small change |
+| Data Studio | Panel coverage, full-holdout family errors, searchable ranking of all 1,782 store-family errors, model validation, feature ablation, and a forecast-horizon analysis panel (scores pending notebook rerun) |
+| Forecast Explorer | Filters saved LightGBM holdout preview observations by family, store and date; includes error views but does not run new model inference |
+| Individual Defense | Individual defense preparation mapped to contribution, key choices, evaluation, a limitation and a small change |
 
 ## Main findings
 
@@ -49,7 +49,7 @@ Removing sales-history features increases mean rolling RMSLE from 0.41428 to 0.5
 ## Reproduce the experiment
 
 1. Download the competition files from Kaggle Store Sales – Time Series Forecasting.
-2. Open the canonical [project notebook in this repository](notebooks/ES335_Retail_Sales_Forecasting_Project.ipynb), or the tested [Kaggle copy](https://www.kaggle.com/code/krishn9656/notebook3b38d5a9f8). The canonical notebook is archived at [`notebooks/ES335_Retail_Sales_Forecasting_Project.ipynb`](notebooks/ES335_Retail_Sales_Forecasting_Project.ipynb). The tested Kaggle copy is also available at [the team workspace](https://www.kaggle.com/code/krishn9656/notebook3b38d5a9f8).
+2. Open the canonical [project notebook in this repository](notebooks/ES335_Retail_Sales_Forecasting_Project.ipynb), or use the tested [Kaggle copy](https://www.kaggle.com/code/krishn9656/notebook3b38d5a9f8).
 3. Attach the dataset and run the notebook from the first cell.
 4. The notebook exports rolling validation, final holdout, family error, feature-ablation, prediction-sample, forecast-horizon and environment-version files to project_outputs/.
 5. Compare the exported metrics with the compact CSV artifacts in outputs/.
