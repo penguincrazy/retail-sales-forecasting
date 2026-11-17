@@ -1,7 +1,8 @@
-# Dependencies used by the ES 335 course-project notebook
-numpy
-pandas
-matplotlib
-scikit-learn
-lightgbm
-jupyter
+# Python dependencies for the ES 335 notebook.
+# Exact versions for an experiment run are recorded in project_outputs/environment.json.
+numpy>=1.24
+pandas>=2.0
+matplotlib>=3.7
+scikit-learn>=1.3
+lightgbm>=4.0
+jupyter>=1.0
