@@ -15,7 +15,7 @@ This repository is organised as a static research portal plus a compact set of r
 | outputs/ | Exported experiment metadata, model and ablation CSVs, family errors, and five store-family error examples |
 | docs/methodology.md | Forecast information boundary, feature groups, models and validation protocol |
 | docs/limitations.md | Known limitations and interpretation boundaries |
-| requirements.txt | Python dependencies used by the notebook |
+| notebooks/ES335_Retail_Sales_Forecasting_Project.ipynb | Canonical report-style notebook; not yet committed to this repository and should be added or linked before submission |\n| requirements.txt | Python dependencies used by the notebook |
 | .gitignore | Excludes local Kaggle data, caches and generated working directories |
 
 ## Deliberately not committed
@@ -25,4 +25,4 @@ This repository is organised as a static research portal plus a compact set of r
 - The alternative per-family LightGBM script and four-model LightGBM ensemble notebook: these represent different experimental pipelines and are not the source of the reported course-project metrics.
 - The unrelated Indonesian individual-assignment notebook: it is not part of this team project.
 
-The canonical source for the reported course experiment is the report-style ES 335 retail-sales notebook. The results in outputs/ and data/results.json should be checked against that notebook.
+The canonical source for the reported course experiment is the report-style ES 335 retail-sales notebook maintained in the team's Kaggle workspace. It is not yet committed here. The results in outputs/ and data/results.json should be checked against that notebook. The complete worst_store_family_errors.csv was not included in the exported output archive; only the top-five examples are documented in outputs/worst_store_family_examples.csv.
