@@ -1,0 +1,45 @@
+name: Notebook syntax validation
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "notebooks/**"
+      - ".github/workflows/notebook-syntax.yml"
+  pull_request:
+    paths:
+      - "notebooks/**"
+      - ".github/workflows/notebook-syntax.yml"
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Compile notebook code cells
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          notebook_path = Path("notebooks/ES335_Retail_Sales_Forecasting_Project.ipynb")
+          notebook = json.loads(notebook_path.read_text(encoding="utf-8"))
+          code_cells = [
+              (index, cell)
+              for index, cell in enumerate(notebook.get("cells", []))
+              if cell.get("cell_type") == "code"
+          ]
+          if not code_cells:
+              raise SystemExit("No Python code cells found.")
+
+          for index, cell in code_cells:
+              source = "".join(cell.get("source", []))
+              compile(source, f"{notebook_path}:cell-{index}", "exec")
+
+          print(f"Successfully compiled {len(code_cells)} Python code cells.")
+          PY
