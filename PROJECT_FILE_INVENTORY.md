@@ -15,7 +15,8 @@ This repository is organised as a static research portal plus a compact set of r
 | outputs/ | Exported experiment metadata, model and ablation CSVs, family errors, and five store-family error examples |
 | docs/methodology.md | Forecast information boundary, feature groups, models and validation protocol |
 | docs/limitations.md | Known limitations and interpretation boundaries |
-| notebooks/ES335_Retail_Sales_Forecasting_Project.ipynb | Canonical report-style notebook; the tested Kaggle version is linked in the README, but the exported `.ipynb` file is not yet committed |\n| requirements.txt | Python dependencies used by the notebook |
+| notebooks/ES335_Retail_Sales_Forecasting_Project.ipynb | Canonical report-style notebook; the tested Kaggle version is linked in the README, but the exported `.ipynb` file is not yet committed |
+| requirements.txt | Python dependencies used by the notebook |
 | .gitignore | Excludes local Kaggle data, caches and generated working directories |
 
 ## Deliberately not committed
