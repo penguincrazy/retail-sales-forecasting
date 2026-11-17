@@ -15,7 +15,7 @@ The static portal has four pages:
 | Page | Purpose |
 |---|---|
 | Overview | Research question, data, preprocessing, baseline, candidate models, evaluation, results, error analysis, limitations and reproduction |
-| Data Studio | Full-holdout family-level error comparison with CSV export, model validation summary, ablation results, top-five store-family error examples, and a clearly labelled sample-row inspector |
+| Data Studio | Panel-coverage diagnostics, full-holdout family-level error comparison with CSV export, model validation summary, ablation results, top-five store-family error examples, and a clearly labelled sample-row inspector |
 | Forecast Explorer | Inspects saved LightGBM holdout predictions; it does not run a new model inference |
 | Oral Defense | Searchable project-specific questions and answers |
 
