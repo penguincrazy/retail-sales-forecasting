@@ -1,41 +1,39 @@
 # Retail Sales Forecasting — ES 335 Project Website
 
-This is a static website built with HTML, CSS, and vanilla JavaScript. It is designed for GitHub Pages and does not require a backend.
+A static interactive website for the ES 335 daily retail-sales forecasting and feature-analysis project. It is built with HTML, CSS, and vanilla JavaScript and is intended for GitHub Pages.
 
 **Project team:** Krishn Kumar and Arush Banerjee.
 
-## Files
-- `index.html` — page content and structure
-- `style.css` — responsive design
-- `script.js` — charts, family explorer, and navigation
-- `data/results.json` — exported metrics and the 5,000-row prediction sample
+## Website files
+- `index.html` — project narrative and page structure
+- `style.css` — responsive visual design
+- `script.js` — interactive charts, family explorer, and navigation
+- `data/results.json` — exported model metrics, 33 family-level result records, feature-ablation results, and a compact 50-point preview sampled from the exported 5,000-row prediction sample
+- `.nojekyll` — prevents Jekyll processing
 
 ## Run locally
-Because the page fetches `data/results.json`, open it through a local web server rather than double-clicking `index.html`.
-
-With Python installed, run this command from this folder:
+The page loads `data/results.json` with `fetch`, so serve the directory with a local web server rather than opening `index.html` directly:
 
 ```bash
 python -m http.server 8000
 ```
 
-Then open `http://localhost:8000`.
+Then visit `http://localhost:8000`.
 
-## Publish with GitHub Pages
-1. Create a GitHub repository (for example, `retail-sales-forecasting`).
-2. Upload the contents of this folder to the repository root. Do not upload the parent folder as an extra nested directory.
-3. In the repository, open **Settings → Pages**.
-4. Under **Build and deployment**, choose **Deploy from a branch**.
-5. Select the `main` branch and `/ (root)`, then save.
-6. Wait for GitHub Pages to publish and open the URL shown in the Pages settings.
+## Enable GitHub Pages
+Open **Settings → Pages**. Under **Build and deployment**, choose **Deploy from a branch**, then select `main` and `/(root)` and save. The expected site URL is:
 
-## Important verification before submission
-- Add the final notebook/source-code link once the repository is ready.
-- Confirm team-member names and any required course details.
-- The current data archive did not include `worst_store_family_errors.csv`; this page therefore does not claim to show a full store-family error ranking.
-- `holdout_prediction_sample.csv` contains 5,000 rows. Its scatter plot is labelled as a sample and must not be interpreted as the full holdout distribution.
-- The page reports the metrics exactly as supplied in the exported CSV files.
-- The feature-ablation chart averages the three fold-level results from `feature_ablation_results.csv`.
+https://penguincrazy.github.io/retail-sales-forecasting/
+
+GitHub may take a little time to publish after the source is saved.
+
+## Methodology summary
+The project forecasts daily sales for each store–product-family pair over a 16-day horizon. It compares a seasonal-naive baseline with OLS, Ridge, Lasso, Decision Tree, Random Forest, KNN, and LightGBM. Evaluation uses three rolling-origin folds and a separate final holdout. Model fitting was capped at 80,000 training rows for the relevant estimators; the results therefore describe that capped-training setup. Future actual sales are not used as predictors, and the forecast assumes promotion values are known over the 16-day horizon.
+
+## Result-data caveats
+- The compact scatter plot is a 50-point preview from a fixed-stride selection of the exported 5,000-row prediction sample; it is not a full holdout visualization.
+- The exported archive did not contain `worst_store_family_errors.csv`, so the site does not claim to display a full store-family error ranking.
+- The reported metrics are the exported results from the executed notebook. The team should cross-check all values against the notebook before submission.
 
 ## AI assistance disclosure
-AI assistance was used to help implement and edit the website. The project team should review the source, verify all reported figures against the notebook, and be prepared to explain the methodology and conclusions.
+AI assistance was used for website planning, implementation support, and editing. The project team is responsible for independently verifying the displayed results and being able to explain the methodology, code, and conclusions.
